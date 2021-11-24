@@ -2,19 +2,29 @@ package com.example.fragment_review
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.fragment_review.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    val binding by lazy {ActivityMainBinding.inflate(layoutInflater)}   //바인딩 추가
+
+    lateinit var listFragment:ListFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setFragment()
+
+        binding.btnSend.setOnClickListener {
+            listFragment.setValue("전달할 값")
+        }
     }
 
     fun setFragment() {
         //프래그먼트를 삽입하는 과정은 하나의 트랜젝션으로 처리된다.
-        val listFragment: ListFragment = ListFragment()
 
+        listFragment = ListFragment()
 
         //번들을 하나 생성 후 전달할 값을 담음
         var bundle = Bundle()
