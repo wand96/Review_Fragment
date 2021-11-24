@@ -14,6 +14,16 @@ class MainActivity : AppCompatActivity() {
     fun setFragment() {
         //프래그먼트를 삽입하는 과정은 하나의 트랜젝션으로 처리된다.
         val listFragment: ListFragment = ListFragment()
+
+
+        //번들을 하나 생성 후 전달할 값을 담음
+        var bundle = Bundle()
+        bundle.putString("key1", "List Fragment")
+        bundle.putInt("key2", 20210101)
+
+        //값이 담긴 번들을 프래그먼트의 arguments에 담음
+        listFragment.arguments = bundle
+
         //ListFragment를 생성
         val transaction = supportFragmentManager.beginTransaction()
         //프래그먼트 매니저를 통해 트랜젝션을 시작하고 시작한 트랜젝션을 변수에 저장
